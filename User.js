@@ -33,16 +33,33 @@ export default class User {
   }
 
   set nome(novoNome) {
-    if(novoNome === "" ) {
+    if (novoNome === "") {
       throw new Error('Formato do nome não é valido')
     }
     this.#nome = novoNome
   }
+  // exibirInfos() {
+  //   return `${this.nome}, ${this.email}`
+  // }
   exibirInfos() {
-  
-    return `${this.nome}, ${this.email}`
+    if (this.role === "estudante") {
+      return `dados estudantes: ${this.nome}`
+    }
+    if (this.role === "admin") {
+      return `dados admin: ${this.nome}, ${this.role}`
+    }
+    if (this.role === "docente") {
+      return `dados docente: ${this.nome}, ${this.email}`
+    }
+  }
+
+  static exibirInfosGenericas(nome, email) {
+    return `${nome}, ${email}`
   }
 }
+
+
+
 
 
 const novoUser = new User('Juliana', 'j@j.com', '2024-01-01')
